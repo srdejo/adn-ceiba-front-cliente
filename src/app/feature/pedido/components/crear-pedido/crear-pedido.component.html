@@ -1,0 +1,30 @@
+<br>
+<h1>Productos Seleccionados</h1>
+<div *ngIf="productosSeleccionados.length > 0">
+    <mat-list>
+        <mat-list-item *ngFor="let detalle of productosSeleccionados">
+            <mat-icon matListIcon>done</mat-icon>
+            <h3 matLine> {{detalle.producto.nombre}} </h3>
+            <p matLine>
+                <span *ngIf="detalle.producto.valorOferta == 0; else blockOferta"> {{detalle.producto.valor |
+                    currency :
+                    "COP":"$ ": "1.0-0"}}
+                    cantidad {{detalle.cantidad}} total: {{detalle.cantidad * detalle.producto.valor | currency :
+                    "COP":"$
+                    ": "1.0-0"}} </span>
+                <ng-template #blockOferta><span>{{detalle.producto.valorOferta | currency : "COP":"$ ": "1.0-0"}}
+                        cantidad {{detalle.cantidad}} total: {{detalle.cantidad * detalle.producto.valorOferta |
+                        currency :
+                        "COP":"$ ": "1.0-0"}} </span></ng-template>
+            </p>
+        </mat-list-item>
+
+        <mat-list-item>
+            <mat-icon matListIcon>sports_motorsports</mat-icon>
+            <h3 matLine>Valor Domicilio</h3>
+            <p matLine>{{valorDomicilio | currency :
+                "COP":"$ ": "1.0-0"}} <small>El decimo domicilio es gratis</small></p>
+        </mat-list-item>
+    </mat-list>
+    <button mat-stroked-button color="primary" (click)="openDialog()">Solicitar Pedido</button>
+</div>

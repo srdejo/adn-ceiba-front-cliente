@@ -1,0 +1,19 @@
+<div class="grid">
+  <div class="flex col-8">
+    <div  *ngFor="let producto of listaProductos | async" class="box" >
+      <mat-card >
+        <mat-card-title>{{producto.nombre}}</mat-card-title>
+        <mat-card-subtitle *ngIf="producto.valorOferta == 0; else blockOferta">{{producto.valor | currency : "COP":"$ ": "1.0-0"}}</mat-card-subtitle>
+        <ng-template #blockOferta><mat-card-subtitle><span class="tachado">{{producto.valor | currency : "COP":"$ ": "1.0-0"}} </span> - {{producto.valorOferta | currency : "COP":"$ ": "1.0-0"}}</mat-card-subtitle></ng-template>
+        <img mat-card-image
+          src="https://freepikpsd.com/media/2019/10/no-image-available-icon-png-8-Transparent-Images.png" />
+        <mat-card-content>{{producto.descripcion}} </mat-card-content>
+        <mat-card-actions><button mat-raised-button color="primary" (click)="onSelect(producto)" matTooltip="Añadir elemento">Añadir elemento</button></mat-card-actions>
+      </mat-card>
+    </div>
+
+  </div>
+  <div class="col-4">
+    <app-crear-pedido [(productosSeleccionados)]="productoSeleccionado"></app-crear-pedido>
+  </div>
+</div>

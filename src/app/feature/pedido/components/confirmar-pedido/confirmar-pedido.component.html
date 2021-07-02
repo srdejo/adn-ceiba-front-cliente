@@ -1,0 +1,30 @@
+<form [formGroup]="clienteForm" (submit)="submitForm()" >
+    <div class="box">
+        <h1 mat-dialog-title>Tu pedido va estar listo</h1>
+        <div mat-dialog-content>
+            <div class="box">
+                <p>Queremos saber donde enviar el pedido?</p>
+                <mat-form-field appearance="fill">
+                    <mat-label>Nombre Completo</mat-label>
+                    <input validar matInput formControlName="nombre">
+                </mat-form-field>
+
+                <mat-form-field appearance="fill">
+                    <mat-label>Celular</mat-label>
+                    <input validar matInput formControlName="celular">
+                </mat-form-field>
+                <mat-form-field appearance="fill">
+                    <mat-label>Dirección</mat-label>
+                    <input validar matInput formControlName="direccion">
+                </mat-form-field>
+            </div>
+        </div>
+        <div mat-dialog-actions>
+            <button mat-button (click)="cancelar()" type="button"
+            [disabled]="loading">No Gracias</button>
+            <button mat-button color="primary" type="submit"
+            [class.spinner]="loading" [disabled]="loading"
+             cdkFocusInitial>Confirmar</button>
+        </div>
+    </div>
+</form>

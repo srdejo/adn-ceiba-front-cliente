@@ -1,0 +1,35 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "baseUrl": "./",
+    "outDir": "./out-tsc/app",
+    "types": [],
+    "paths": {
+      "@core/*": [
+        "src/app/core/*"
+      ],
+      "@core-service/*": [
+        "src/app/core/services/*"
+      ],
+      "@home/*": [
+        "src/app/feature/home/*"
+      ],
+      "@producto/*": [
+        "src/app/feature/producto/*"
+      ],
+      "@pedido/*": [
+        "src/app/feature/pedido/*"
+      ],
+      "@shared/*": [
+        "src/app/shared/*"
+      ]
+    }
+  },
+  "files": [
+    "src/main.ts",
+    "src/polyfills.ts"
+  ],
+  "include": [
+    "src/**/*.d.ts"
+  ]
+}
