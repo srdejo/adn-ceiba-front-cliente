@@ -1,10 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { MatDialogRef } from '@angular/material/dialog';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { ElementoAlmacenado } from '@core/modelo/elemento-almacenado';
 import { ErrorPeticion } from '@core/modelo/error-peticion';
 import { DtoDetalle } from '@pedido/shared/model/dto-detalle';
 import { DtoPedido } from '@pedido/shared/model/dto-pedido';
+import { DetallePedido } from '@pedido/shared/model/detalle-pedido';
 import { PedidoService } from '../../shared/service/pedido.service';
 
 const LONGITUD_MINIMA_PERMITIDA_TEXTO = 10;
@@ -18,20 +20,38 @@ const LONGITUD_MAXIMA_PERMITIDA_TEXTO = 10;
 export class ConfirmarPedidoComponent implements OnInit {
 
   clienteForm: FormGroup;
-  loading:boolean = false;
+  loading: boolean = false;
+  total: number = 0;
+  dtoDetallePedido: DtoDetalle[] = Array();
+  idPedido: number;
 
   constructor(
     protected pedidoService: PedidoService,
     public dialogRef: MatDialogRef<ConfirmarPedidoComponent>,
-    private _snackBar: MatSnackBar
+    private _snackBar: MatSnackBar,
+    @Inject(MAT_DIALOG_DATA) public data: DetallePedido[]
   ) { }
 
   ngOnInit(): void {
     this.construirFormularioCliente();
+    this.calcularTotal();
+    this.armarDtoDetalle();
   }
 
-  cancelar() {
-    this.dialogRef.close();
+  cerrar() {
+    this.dialogRef.close(this.idPedido);
+  }
+
+  calcularTotal() {
+    this.data.forEach(detalle => {
+      detalle.valorUnidad = (detalle.dtoProducto.valorOferta > 0) ? detalle.dtoProducto.valorOferta : detalle.dtoProducto.valor
+      this.total += detalle.valorUnidad
+    })
+  }
+  armarDtoDetalle() {
+    this.data.forEach(detalle => {
+      this.dtoDetallePedido.push(new DtoDetalle(detalle.cantidad, detalle.dtoProducto.id))
+    })
   }
 
   construirFormularioCliente() {
@@ -52,9 +72,9 @@ export class ConfirmarPedidoComponent implements OnInit {
   crearPedido() {
     this.loading = true;
     this.clienteForm.disable();
-    this.pedidoService.guardar(new DtoPedido(10, [new DtoDetalle(1, 1)]))
+    this.pedidoService.guardar(new DtoPedido(this.clienteForm.value, this.dtoDetallePedido))
       .subscribe({
-        next: (x: any) => console.log("next", x),
+        next: (x: ElementoAlmacenado) => this.idPedido = x.valor,
         error: (err: ErrorPeticion) => {
           this.loading = false;
           console.error("error", err.status)
@@ -64,8 +84,10 @@ export class ConfirmarPedidoComponent implements OnInit {
         complete: () => {
           this.loading = false;
           this.clienteForm.enable();
-          this._snackBar.open('Pedido confirmado correctamente');
-          this.dialogRef.close()
+          this._snackBar.open('Pedido confirmado correctamente', '', {
+            duration: 3000
+          });
+          this.cerrar();
         }
       })
   }

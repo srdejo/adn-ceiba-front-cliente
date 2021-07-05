@@ -3,6 +3,7 @@ export class Producto {
     nombre: string;
     descripcion: string;
     valor: number;
+    valorOferta: number;
     idComercio: number;
 
     constructor(id: number, nombre: string, descripcion: string, valor: number, idComercio: number) {

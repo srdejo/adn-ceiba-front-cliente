@@ -1,15 +1,15 @@
-import { Producto } from "./producto";
+import { Producto } from "../../../producto/shared/model/producto";
 
 export class DetallePedido {
     id: number;
-    producto: Producto;
+    dtoProducto: Producto;
     cantidad: number;
     valorUnidad: number;
     observacion: string;
 
-    constructor(id: number, producto: Producto, cantidad: number, valorUnidad: number, observacion: string) {
+    constructor(id: number, dtoProducto: Producto, cantidad: number, valorUnidad: number, observacion: string) {
         this.id = id;
-        this.producto = producto;
+        this.dtoProducto = dtoProducto;
         this.cantidad = cantidad;
         this.valorUnidad = valorUnidad;
         this.observacion = observacion;

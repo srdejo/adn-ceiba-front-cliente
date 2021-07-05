@@ -3,7 +3,7 @@ import { Observable } from 'rxjs';
 
 import { ProductoService } from '@producto/shared/service/producto.service';
 import { Producto } from '@producto/shared/model/producto';
-import { DetallePedido } from '@producto/shared/model/detalle-pedido';
+import { DetallePedido } from '@pedido/shared/model/detalle-pedido';
 
 @Component({
   selector: 'app-listar-producto',
@@ -27,7 +27,7 @@ export class ListarProductoComponent implements OnInit {
     flagEncontrado = false;
 
     this.productoSeleccionado.filter(detallePedido => {
-      if(detallePedido.producto.id == producto.id){
+      if(detallePedido.dtoProducto.id == producto.id){
         detallePedido.cantidad = detallePedido.cantidad + 1;
         flagEncontrado = true;
       }

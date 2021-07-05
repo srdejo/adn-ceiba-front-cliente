@@ -4,16 +4,16 @@
     <mat-list>
         <mat-list-item *ngFor="let detalle of productosSeleccionados">
             <mat-icon matListIcon>done</mat-icon>
-            <h3 matLine> {{detalle.producto.nombre}} </h3>
+            <h3 matLine> {{detalle.dtoProducto.nombre}} </h3>
             <p matLine>
-                <span *ngIf="detalle.producto.valorOferta == 0; else blockOferta"> {{detalle.producto.valor |
+                <span *ngIf="detalle.dtoProducto.valorOferta == 0; else blockOferta"> {{detalle.dtoProducto.valor |
                     currency :
                     "COP":"$ ": "1.0-0"}}
-                    cantidad {{detalle.cantidad}} total: {{detalle.cantidad * detalle.producto.valor | currency :
+                    cantidad {{detalle.cantidad}} total: {{detalle.cantidad * detalle.dtoProducto.valor | currency :
                     "COP":"$
                     ": "1.0-0"}} </span>
-                <ng-template #blockOferta><span>{{detalle.producto.valorOferta | currency : "COP":"$ ": "1.0-0"}}
-                        cantidad {{detalle.cantidad}} total: {{detalle.cantidad * detalle.producto.valorOferta |
+                <ng-template #blockOferta><span>{{detalle.dtoProducto.valorOferta | currency : "COP":"$ ": "1.0-0"}}
+                        cantidad {{detalle.cantidad}} total: {{detalle.cantidad * detalle.dtoProducto.valorOferta |
                         currency :
                         "COP":"$ ": "1.0-0"}} </span></ng-template>
             </p>

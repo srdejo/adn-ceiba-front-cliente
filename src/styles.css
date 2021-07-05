@@ -19,6 +19,10 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     align-items: stretch;
  
 }
+.box120{
+  min-width: 120px;
+  border-bottom: 1px solid #ccc;
+}
 .grid{
     display: grid;
   grid-template-columns: repeat(12, 1fr);

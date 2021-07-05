@@ -10,7 +10,7 @@ export class ProductoService {
   constructor(protected http: HttpService) {}
 
   public consultar() {
-    return this.http.doGet<Producto[]>(`${environment.endpoint}/productos`, this.http.optsName('consultar productos'));
+    return this.http.doGet<Producto[]>(`${environment.endpoint}/productos/disponible`, this.http.optsName('consultar productos'));
   }
 
   public guardar(producto: Producto) {

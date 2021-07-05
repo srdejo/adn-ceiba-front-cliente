@@ -1,11 +1,12 @@
+import { Cliente } from "@producto/shared/model/cliente";
 import { DtoDetalle } from "./dto-detalle";
 
 export class DtoPedido {
-    idCliente: number;
+    cliente: Cliente;
     detallePedidos: DtoDetalle[];
 
-    constructor(idCliente: number, detallePedidos: DtoDetalle[]){
-        this.idCliente = idCliente;
+    constructor(cliente: Cliente, detallePedidos: DtoDetalle[]){
+        this.cliente = cliente;
         this.detallePedidos = detallePedidos;
     }
 
