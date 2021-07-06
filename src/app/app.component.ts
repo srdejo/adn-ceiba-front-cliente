@@ -1,6 +1,4 @@
 import { Component } from '@angular/core';
-import { MenuItem } from '@core/modelo/menu-item';
-
 
 @Component({
   selector: 'app-root',
@@ -9,11 +7,5 @@ import { MenuItem } from '@core/modelo/menu-item';
 })
 export class AppComponent {
   title = 'ADN Ceiba - Domi';
-  public companies: MenuItem[] = [
-    { url: '/home', nombre: 'home' },
-    { url: '/producto', nombre: 'producto' }
-    
-  ];
-
   
 }

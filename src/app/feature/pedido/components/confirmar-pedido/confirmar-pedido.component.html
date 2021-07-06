@@ -6,25 +6,25 @@
                 <p>Queremos saber donde enviar el pedido?</p>
                 <mat-form-field appearance="legacy">
                     <mat-label>Nombre Completo</mat-label>
-                    <input validar matInput formControlName="nombre">
+                    <input validar matInput formControlName="nombre" id="nombre">
                 </mat-form-field>
 
                 <mat-form-field appearance="legacy">
                     <mat-label>Celular</mat-label>
-                    <input validar matInput formControlName="celular">
+                    <input validar matInput formControlName="celular" id="celular">
                 </mat-form-field>
                 <mat-form-field appearance="legacy">
                     <mat-label>Dirección</mat-label>
-                    <input validar matInput formControlName="direccion">
+                    <input validar matInput formControlName="direccion" id="direccion">
                 </mat-form-field>
             </div>
         </div>
         <div mat-dialog-actions>
             <button mat-button (click)="cerrar()" type="button"
-            [disabled]="loading">No Gracias</button>
+            [disabled]="loading" id="btnCancelar">No Gracias</button>
             <button mat-button color="primary" type="submit"
             [class.spinner]="loading" [disabled]="loading"
-             cdkFocusInitial>Confirmar</button>
+             cdkFocusInitial id="btnConfirmar">Confirmar</button>
         </div>
     </div>
 </form>

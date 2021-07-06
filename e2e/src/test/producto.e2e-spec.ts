@@ -1,38 +1,61 @@
-import { browser, logging } from 'protractor';
-import { NavbarPage } from '../page/navbar/navbar.po';
 import { AppPage } from '../app.po';
 import { ProductoPage } from '../page/producto/producto.po';
+import { PedidoPage } from '../page/pedido/pedido.po';
+import { browser } from 'protractor';
+
 
 describe('workspace-project Producto', () => {
     let page: AppPage;
-    let navBar: NavbarPage;
     let producto: ProductoPage;
+    let pedido: PedidoPage;
+    
 
     beforeEach(() => {
         page = new AppPage();
-        navBar = new NavbarPage();
         producto = new ProductoPage();
-    });
-
-    it('Deberia crear producto', () => {
-        const ID_PRODUCTO = '001';
-        const DESCRIPCION_PRODUCTO = 'Producto de pruebas';
-
-        page.navigateTo();
-        navBar.clickBotonProductos();
-        producto.clickBotonCrearProductos();
-        producto.ingresarId(ID_PRODUCTO);
-        producto.ingresarDescripcion(DESCRIPCION_PRODUCTO);
-
-        // Adicionamos las validaciones despues de la creación
-        // expect(<>).toEqual(<>);
+        pedido = new PedidoPage();
     });
 
     it('Deberia listar productos', () => {
         page.navigateTo();
-        navBar.clickBotonProductos();
-        producto.clickBotonListarProductos();
+        expect(producto.contarProductos()).toBeGreaterThan(0);
+    });
 
-        expect(4).toBe(producto.contarProductos());
+    it('Agregar productos', () => {
+        page.navigateTo();
+        producto.agregarProducto();
+        expect(producto.contarProductos()).toBeLessThanOrEqual(producto.contarProductosSeleccionados());
+    });
+
+    it('Solicitar pedido', async () => {
+        // Arrange
+        let nombre: string = "Test Name";
+        page.navigateTo();
+        producto.agregarProducto();
+        pedido.solicitarPedido();
+        pedido.ingresarNombre(nombre);
+        pedido.ingresarCelular("3130000000");
+        pedido.ingresarDireccion("Av Siempre Viva");
+        // Act
+        pedido.confirmarPedido();
+        // Assert
+        expect(browser.getCurrentUrl()).toContain("pedido/detalle/")
+        
+    });
+
+    it('Cancelar pedido', async () => {
+        // Arrange
+        let nombre: string = "Test Name";
+        page.navigateTo();
+        producto.agregarProducto();
+        pedido.solicitarPedido();
+        pedido.ingresarNombre(nombre);
+        pedido.ingresarCelular("3130000000");
+        pedido.ingresarDireccion("Av Siempre Viva");
+        // Act
+        pedido.cancelarPedido();
+        // Assert
+        expect(browser.getCurrentUrl()).not.toContain("pedido/detalle/")
+        
     });
 });
