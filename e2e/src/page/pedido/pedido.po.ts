@@ -7,8 +7,6 @@ export class PedidoPage {
     private botonSolicitar = element.all(by.id("btnSolicitarPedido"));
     private botonConfirmar = element.all(by.id("btnConfirmar"));
     private botonCancelar = element.all(by.id("btnCancelar"));
-    private listaDetalle = element.all(by.css('cabecera-pedido.h3'));
-
     
     async ingresarNombre(s: string) {
         await this.inputNombre.sendKeys(s);
@@ -34,7 +32,8 @@ export class PedidoPage {
         await this.botonCancelar.click();
     }
 
-    async getDetalle(){
-        return this.listaDetalle.first().getText();
+
+    async confirmarEstaHabilitado(){
+        return this.botonConfirmar.isEnabled();
     }
 }
