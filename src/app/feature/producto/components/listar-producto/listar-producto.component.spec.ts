@@ -8,12 +8,14 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { ProductoService } from '../../shared/service/producto.service';
 import { Producto } from '../../shared/model/producto';
 import { HttpService } from 'src/app/core/services/http.service';
+import { MatCardModule } from '@angular/material/card';
+import { PedidoModule } from '@pedido/pedido.module';
 
 describe('ListarProductoComponent', () => {
   let component: ListarProductoComponent;
   let fixture: ComponentFixture<ListarProductoComponent>;
   let productoService: ProductoService;
-  const listaProductos: Producto[] = [new Producto('1', 'Producto 1', "Descripcio producto", 1000, 1), new Producto('2', 'Producto 2', "Descripcio producto", 1000, 1)];
+  const listaProductos: Producto[] = [new Producto(1, 'Producto 1', "Descripcio producto", 1000, 1), new Producto(2, 'Producto 2', "Descripcio producto", 1000, 1)];
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
@@ -21,7 +23,9 @@ describe('ListarProductoComponent', () => {
       imports: [
         CommonModule,
         HttpClientModule,
-        RouterTestingModule
+        RouterTestingModule,
+        MatCardModule,
+        PedidoModule
       ],
       providers: [ProductoService, HttpService]
     })
