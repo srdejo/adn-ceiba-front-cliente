@@ -38,5 +38,5 @@ describe('PedidoService', () => {
     req.event(new HttpResponse<ElementoAlmacenado>({ body: { valor: 1 } }));
   });
 
-  // it('Deberia consultar un pedido') ToDo
+  // it('Deberia consultar un pedido') @ToDo
 });

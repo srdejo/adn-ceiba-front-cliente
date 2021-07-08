@@ -74,7 +74,7 @@ export class ConfirmarPedidoComponent implements OnInit {
     this.clienteForm.disable();
     this.pedidoService.guardar(new DtoPedido(this.clienteForm.value, this.dtoDetallePedido))
       .subscribe({
-        next: (x: ElementoAlmacenado) => this.idPedido = x.valor,
+        next: (respuesta: ElementoAlmacenado) => this.idPedido = respuesta.valor,
         error: (err: ErrorPeticion) => {
           this.loading = false;
           console.error("error", err.status)

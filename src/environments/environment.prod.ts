@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  endpoint: '/domi-api'
+  endpoint: 'http://localhost:8081/domi-api'
 };
