@@ -2,7 +2,6 @@ import { Component, Input, OnInit } from '@angular/core';
 import { DetallePedido } from '@pedido/shared/model/detalle-pedido';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmarPedidoComponent } from '../confirmar-pedido/confirmar-pedido.component';
-import { Cliente } from '@producto/shared/model/cliente';
 import { PedidoService } from '@pedido/shared/service/pedido.service';
 import { Router } from '@angular/router';
 
@@ -13,12 +12,14 @@ import { Router } from '@angular/router';
 })
 export class CrearPedidoComponent implements OnInit {
 
-  cliente: Cliente;
 
-  valorDomicilio: number = 2000;
-  @Input() productosSeleccionados: DetallePedido[]
+  valorDomicilio = 2000;
 
-  constructor(public dialog: MatDialog, protected pedidoService: PedidoService,
+  @Input() productosSeleccionados: DetallePedido[];
+
+  constructor(
+    public dialog: MatDialog,
+    protected pedidoService: PedidoService,
     private router: Router) { }
 
   ngOnInit(): void {
@@ -31,14 +32,7 @@ export class CrearPedidoComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed', result);
-      this.router.navigate(['./pedido/detalle', result])
-    });
-
-    dialogRef.beforeClosed().subscribe(result => {
-      console.log('The dialog was closed', result);
+      this.router.navigate(['./pedido/detalle', result]);
     });
   }
-
 }
-

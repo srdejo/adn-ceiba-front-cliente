@@ -1,4 +1,4 @@
-import { Producto } from "../../../producto/shared/model/producto";
+import { Producto } from '@producto/shared/model/producto';
 
 export class DetallePedido {
     id: number;

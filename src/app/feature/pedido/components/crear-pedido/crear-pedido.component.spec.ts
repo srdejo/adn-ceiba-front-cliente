@@ -19,8 +19,8 @@ describe('CrearPedidoComponent', () => {
   let component: CrearPedidoComponent;
   let fixture: ComponentFixture<CrearPedidoComponent>;
   let pedidoService: PedidoService;
-  let detalle: DetallePedido = new DetallePedido(null, new Producto(null, "Comida", "descripcion", 5000, 1), 1, 5000, "");
-  let productosSeleccionados: DetallePedido[] = Array();
+  const detalle: DetallePedido = new DetallePedido(null, new Producto(null, 'Comida', 'descripcion', 5000, 1), 1, 5000, '');
+  const productosSeleccionados: DetallePedido[] = Array();
   productosSeleccionados.push(detalle);
 
   beforeEach(waitForAsync(() => {
@@ -44,7 +44,7 @@ describe('CrearPedidoComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(CrearPedidoComponent);
     component = fixture.componentInstance;
-    component.productosSeleccionados = productosSeleccionados
+    component.productosSeleccionados = productosSeleccionados;
     pedidoService = TestBed.inject(PedidoService);
     spyOn(pedidoService, 'guardar').and.returnValue(
       of({ valor: 1 })

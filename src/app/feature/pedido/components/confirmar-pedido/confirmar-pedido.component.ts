@@ -20,15 +20,15 @@ const LONGITUD_MAXIMA_PERMITIDA_TEXTO = 10;
 export class ConfirmarPedidoComponent implements OnInit {
 
   clienteForm: FormGroup;
-  loading: boolean = false;
-  total: number = 0;
+  loading = false;
+  total = 0;
   dtoDetallePedido: DtoDetalle[] = Array();
   idPedido: number;
 
   constructor(
     protected pedidoService: PedidoService,
     public dialogRef: MatDialogRef<ConfirmarPedidoComponent>,
-    private _snackBar: MatSnackBar,
+    private snackBar: MatSnackBar,
     @Inject(MAT_DIALOG_DATA) public data: DetallePedido[]
   ) { }
 
@@ -44,27 +44,29 @@ export class ConfirmarPedidoComponent implements OnInit {
 
   calcularTotal() {
     this.data.forEach(detalle => {
-      detalle.valorUnidad = (detalle.dtoProducto.valorOferta > 0) ? detalle.dtoProducto.valorOferta : detalle.dtoProducto.valor
-      this.total += detalle.valorUnidad
-    })
+      detalle.valorUnidad = (detalle.dtoProducto.valorOferta > 0) ? detalle.dtoProducto.valorOferta : detalle.dtoProducto.valor;
+      this.total += detalle.valorUnidad;
+    });
   }
   armarDtoDetalle() {
     this.data.forEach(detalle => {
-      this.dtoDetallePedido.push(new DtoDetalle(detalle.cantidad, detalle.dtoProducto.id))
-    })
+      this.dtoDetallePedido.push(new DtoDetalle(detalle.cantidad, detalle.dtoProducto.id));
+    });
   }
 
   construirFormularioCliente() {
     this.clienteForm = new FormGroup({
       nombre: new FormControl('', [Validators.required]),
-      celular: new FormControl('', [Validators.required, Validators.minLength(LONGITUD_MINIMA_PERMITIDA_TEXTO), Validators.maxLength(LONGITUD_MAXIMA_PERMITIDA_TEXTO)]),
+      celular: new FormControl('', [Validators.required,
+      Validators.minLength(LONGITUD_MINIMA_PERMITIDA_TEXTO),
+      Validators.maxLength(LONGITUD_MAXIMA_PERMITIDA_TEXTO)]),
       direccion: new FormControl('', [Validators.required])
     });
   }
 
   submitForm() {
     if (this.clienteForm.valid) {
-      this.crearPedido()
+      this.crearPedido();
     }
   }
 
@@ -77,18 +79,17 @@ export class ConfirmarPedidoComponent implements OnInit {
         next: (respuesta: ElementoAlmacenado) => this.idPedido = respuesta.valor,
         error: (err: ErrorPeticion) => {
           this.loading = false;
-          console.error("error", err.status)
           this.clienteForm.enable();
-          this._snackBar.open(err.error.mensaje);
+          this.snackBar.open(err.error.mensaje);
         },
         complete: () => {
           this.loading = false;
           this.clienteForm.enable();
-          this._snackBar.open('Pedido confirmado correctamente', '', {
+          this.snackBar.open('Pedido confirmado correctamente', '', {
             duration: 3000
           });
           this.cerrar();
         }
-      })
+      });
   }
 }

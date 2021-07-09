@@ -16,7 +16,7 @@ export class PedidoService {
   }
 
   public consultar(id: number) {
-    return this.http.doGet<Pedido>(`${environment.endpoint}/pedidos/${id}`, this.http.optsName('consultar productos'))
+    return this.http.doGet<Pedido>(`${environment.endpoint}/pedidos/${id}`, this.http.optsName('consultar productos'));
   }
 
 }

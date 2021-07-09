@@ -23,19 +23,18 @@ export class ListarProductoComponent implements OnInit {
   }
 
   onSelect(producto: Producto): void {
-    let flagEncontrado:Boolean;
-    flagEncontrado = false;
+    let flagEncontrado = false;
 
     this.productoSeleccionado.filter(detallePedido => {
-      if(detallePedido.dtoProducto.id == producto.id){
+      if (detallePedido.dtoProducto.id === producto.id) {
         detallePedido.cantidad = detallePedido.cantidad + 1;
         flagEncontrado = true;
       }
-    })
+    });
 
-    if(!flagEncontrado){
-      let nuevoDetallePedido =  new DetallePedido(null, producto, 1, producto.valor, "");
-      this.productoSeleccionado.push(nuevoDetallePedido);    
+    if (!flagEncontrado) {
+      const nuevoDetallePedido = new DetallePedido(null, producto, 1, producto.valor, '');
+      this.productoSeleccionado.push(nuevoDetallePedido);
     }
   }
 }

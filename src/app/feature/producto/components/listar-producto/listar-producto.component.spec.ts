@@ -15,7 +15,7 @@ describe('ListarProductoComponent', () => {
   let component: ListarProductoComponent;
   let fixture: ComponentFixture<ListarProductoComponent>;
   let productoService: ProductoService;
-  const listaProductos: Producto[] = [new Producto(1, 'Producto 1', "Descripcio producto", 1000, 1), new Producto(2, 'Producto 2', "Descripcio producto", 1000, 1)];
+  const listaProductos: Producto[] = [new Producto(1, 'Producto 1', 'Descripcio producto', 1000, 1), new Producto(2, 'Producto 2', 'Descripcio producto', 1000, 1)];
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
@@ -46,7 +46,7 @@ describe('ListarProductoComponent', () => {
     expect(component).toBeTruthy();
     component.listaProductos.subscribe(resultado => {
       expect(2).toBe(resultado.length);
+    });
   });
-});
 
 });

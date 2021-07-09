@@ -35,7 +35,8 @@ describe('ConfirmarPedidoComponent', () => {
       providers: [PedidoService, HttpService,
         { provide: MatDialogRef, useValue: {} },
         { provide: MatSnackBar, useValue: [] },
-        { provide: MAT_DIALOG_DATA, useValue: [] },],
+        { provide: MAT_DIALOG_DATA, useValue: [] },
+      ],
     })
       .compileComponents();
   }));

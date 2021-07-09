@@ -4,7 +4,6 @@ import { ProductoPage } from '../page/producto/producto.po';
 describe('workspace-project Producto', () => {
     let page: AppPage;
     let producto: ProductoPage;
-    
 
     beforeEach(() => {
         page = new AppPage();

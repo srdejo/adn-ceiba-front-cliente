@@ -8,7 +8,6 @@ describe('workspace-project Producto', () => {
     let page: AppPage;
     let producto: ProductoPage;
     let pedido: PedidoPage;
-    
 
     beforeEach(() => {
         page = new AppPage();
@@ -18,47 +17,44 @@ describe('workspace-project Producto', () => {
 
     it('Solicitar pedido', async () => {
         // Arrange
-        let nombre: string = "Test Name";
         page.navigateTo();
         producto.agregarProducto();
         pedido.solicitarPedido();
-        pedido.ingresarNombre(nombre);
-        pedido.ingresarCelular("3130000000");
-        pedido.ingresarDireccion("Av Siempre Viva");
+        pedido.ingresarNombre('Test Name');
+        pedido.ingresarCelular('3130000000');
+        pedido.ingresarDireccion('Av Siempre Viva');
         // Act
         pedido.confirmarPedido();
         // Assert
-        expect(browser.getCurrentUrl()).toContain("pedido/detalle/")
+        expect(browser.getCurrentUrl()).toContain('pedido/detalle/');
     });
 
     it('Cancelar pedido', async () => {
         // Arrange
-        let nombre: string = "Test Name";
         page.navigateTo();
         producto.agregarProducto();
         pedido.solicitarPedido();
-        pedido.ingresarNombre(nombre);
-        pedido.ingresarCelular("3130000000");
-        pedido.ingresarDireccion("Av Siempre Viva");
+        pedido.ingresarNombre('Test Name');
+        pedido.ingresarCelular('3130000000');
+        pedido.ingresarDireccion('Av Siempre Viva');
         // Act
         pedido.cancelarPedido();
         // Assert
-        expect(browser.getCurrentUrl()).not.toContain("pedido/detalle/")
+        expect(browser.getCurrentUrl()).not.toContain('pedido/detalle/');
     });
 
     it('Celular con menos números', async () => {
         // Arrange
-        let nombre: string = "Test Name";
         page.navigateTo();
         producto.agregarProducto();
         pedido.solicitarPedido();
-        pedido.ingresarNombre(nombre);
-        pedido.ingresarCelular("31300000");
-        pedido.ingresarDireccion("Av Siempre Viva");
+        pedido.ingresarNombre('Test Name');
+        pedido.ingresarCelular('31300000');
+        pedido.ingresarDireccion('Av Siempre Viva');
         // Act
         pedido.confirmarPedido();
         // Assert
-        expect(browser.getCurrentUrl()).not.toContain("pedido/detalle/")
+        expect(browser.getCurrentUrl()).not.toContain('pedido/detalle/');
     });
 
 });

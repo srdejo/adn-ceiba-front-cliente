@@ -29,10 +29,10 @@ describe('PedidoService', () => {
   });
 
   it('Deberia almacenar el pedido', () => {
-    const dummyPedido = new DtoPedido(new Cliente(null, "Cliente Prueba", "30000000", "Calle Siempre Viva"), null);
+    const dummyPedido = new DtoPedido(new Cliente(null, 'Cliente Prueba', '30000000', 'Calle Siempre Viva'), null);
     service.guardar(dummyPedido).subscribe((respuesta) => {
       expect(respuesta).toEqual({ valor: 1 });
-    })
+    });
     const req = httpMock.expectOne(apiEndpointProductos);
     expect(req.request.method).toBe('POST');
     req.event(new HttpResponse<ElementoAlmacenado>({ body: { valor: 1 } }));
