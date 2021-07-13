@@ -7,9 +7,9 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { RouterTestingModule } from '@angular/router/testing';
 import { HttpService } from '@core/services/http.service';
-import { DetallePedido } from '@pedido/shared/model/detalle-pedido';
 import { PedidoService } from '@pedido/shared/service/pedido.service';
-import { Producto } from '@producto/shared/model/producto';
+import { DetallePedido } from '@shared/model/detalle-pedido';
+import { Producto } from '@shared/model/producto';
 import { of } from 'rxjs';
 
 

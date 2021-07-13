@@ -8,12 +8,14 @@ import { ToolbarComponent } from './components/toolbar/toolbar.component';
 import { HttpService } from './services/http.service';
 import { ManejadorError } from './interceptor/manejador-error';
 import { RouterModule } from '@angular/router';
+import { MatToolbarModule } from '@angular/material/toolbar';
 
 @NgModule({
   declarations: [ToolbarComponent],
   imports: [
     CommonModule,
-    RouterModule
+    RouterModule,
+    MatToolbarModule
   ],
   exports: [ToolbarComponent],
   providers: [

@@ -4,9 +4,9 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ElementoAlmacenado } from '@core/modelo/elemento-almacenado';
 import { ErrorPeticion } from '@core/modelo/error-peticion';
+import { DetallePedido } from '@pedido/shared/model/detalle-pedido';
 import { DtoDetalle } from '@pedido/shared/model/dto-detalle';
 import { DtoPedido } from '@pedido/shared/model/dto-pedido';
-import { DetallePedido } from '@pedido/shared/model/detalle-pedido';
 import { PedidoService } from '../../shared/service/pedido.service';
 
 const LONGITUD_MINIMA_PERMITIDA_TEXTO = 10;

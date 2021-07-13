@@ -1,4 +1,4 @@
-import { Cliente } from '@producto/shared/model/cliente';
+import { Cliente } from './cliente';
 import { DtoDetalle } from './dto-detalle';
 
 export class DtoPedido {

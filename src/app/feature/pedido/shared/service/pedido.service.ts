@@ -4,6 +4,7 @@ import { ElementoAlmacenado } from '@core/modelo/elemento-almacenado';
 import { environment } from 'src/environments/environment';
 import { DtoPedido } from '../model/dto-pedido';
 import { Pedido } from '../model/pedido';
+import { Producto } from '../model/producto';
 
 @Injectable()
 export class PedidoService {
@@ -18,5 +19,10 @@ export class PedidoService {
   public consultar(id: number) {
     return this.http.doGet<Pedido>(`${environment.endpoint}/pedidos/${id}`, this.http.optsName('consultar productos'));
   }
+
+  public listar() {
+    return this.http.doGet<Producto[]>(`${environment.endpoint}/productos/disponible`, this.http.optsName('consultar productos'));
+  }
+
 
 }

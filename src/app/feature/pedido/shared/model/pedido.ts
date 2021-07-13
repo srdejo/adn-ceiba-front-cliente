@@ -1,5 +1,5 @@
-import { Cliente } from '@producto/shared/model/cliente';
-import { DetallePedido } from '@pedido/shared/model/detalle-pedido';
+import { Cliente } from './cliente';
+import { DetallePedido } from './detalle-pedido';
 
 export class Pedido {
     id: number;

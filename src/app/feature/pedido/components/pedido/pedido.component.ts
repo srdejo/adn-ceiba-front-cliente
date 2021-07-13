@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Pedido } from '../../shared/model/pedido';
-import { PedidoService } from '@pedido/shared/service/pedido.service';
 import { DetallePedido } from '@pedido/shared/model/detalle-pedido';
+import { Pedido } from '@pedido/shared/model/pedido';
+import { PedidoService } from '@pedido/shared/service/pedido.service';
 
 @Component({
   selector: 'app-pedido',

@@ -1,9 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { DetallePedido } from '@pedido/shared/model/detalle-pedido';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmarPedidoComponent } from '../confirmar-pedido/confirmar-pedido.component';
 import { PedidoService } from '@pedido/shared/service/pedido.service';
 import { Router } from '@angular/router';
+import { DetallePedido } from '@pedido/shared/model/detalle-pedido';
 
 @Component({
   selector: 'app-crear-pedido',

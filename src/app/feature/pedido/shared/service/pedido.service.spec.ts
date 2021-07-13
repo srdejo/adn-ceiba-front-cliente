@@ -3,7 +3,7 @@ import { HttpClientTestingModule, HttpTestingController } from '@angular/common/
 import { TestBed } from '@angular/core/testing';
 import { ElementoAlmacenado } from '@core/modelo/elemento-almacenado';
 import { HttpService } from '@core/services/http.service';
-import { Cliente } from '@producto/shared/model/cliente';
+import { Cliente } from '@pedido/shared/model/cliente';
 import { environment } from 'src/environments/environment';
 import { DtoPedido } from '../model/dto-pedido';
 
